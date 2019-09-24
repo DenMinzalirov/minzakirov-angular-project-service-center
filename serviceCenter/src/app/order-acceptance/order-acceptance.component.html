@@ -1,1 +1,13 @@
-<p>order-acceptance works!</p>
+<div>
+  <form [formGroup]="order" (ngSubmit)="createOrder()">
+    <label>numberOrder</label>
+    <input type="text" formControlName="numberOrder">
+    <label>dateOrder</label>
+    <input type="text" formControlName="dateOrder">
+    <label>brandPhone</label>
+    <input type="text" formControlName="brandPhone">
+    <label>modelPhone</label>
+    <input type="text" formControlName="modelPhone">
+    <button type="submit">Сформировать Заказ</button>
+  </form>
+</div>
