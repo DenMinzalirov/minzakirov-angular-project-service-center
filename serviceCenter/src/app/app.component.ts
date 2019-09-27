@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database'
+
 
 interface Nav {
   link: string,
@@ -12,21 +14,10 @@ interface Nav {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  nav: Nav[] = [
-    {
-      link: '/',
-      name: 'Home',
-      exact: true
-    },
-    {
-      link: '/passengers',
-      name: 'Passengers',
-      exact: true
-    },
-    {
-      link: '/oops',
-      name: '404',
-      exact: false
-    }
-  ]
+  ord;
+  constructor(db: AngularFireDatabase) {
+    db.list('/order').snapshotChanges();
+    console.log(this.ord)
+
+  }
 }

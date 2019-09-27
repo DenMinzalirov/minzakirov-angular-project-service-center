@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FirebaseService} from "../shared/firebase.service";
 
 @Component({
   selector: 'app-order-acceptance',
@@ -10,19 +11,28 @@ export class OrderAcceptanceComponent implements OnInit {
 
   order: FormGroup;
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.order = new FormGroup({
-      numberOrder: new FormControl(''),
-      dateOrder: new FormControl(''),
-      brandPhone: new FormControl(''),
-      modelPhone: new FormControl('')
+      numberOrder: new FormControl('', Validators.required),
+      dateOrder: new FormControl('', Validators.required),
+      brandPhone: new FormControl('', Validators.required),
+      modelPhone: new FormControl('', Validators.required)
     });
   }
 
   createOrder() {
-    console.log(this.order)
+    this.firebaseService.create(this.order.value).subscribe(x => console.log(x));
+    // const {title} =this.order.value;
+    // const task ={
+    //   title,
+    //   date: new Date()
+    // };
+    // this.firebaseService.create(task).subscribe(task => {
+    //   console.log('task', task)
+    // })
+    // console.log(this.order)
   }
 
 }
