@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-control.component.css']
 })
 export class OrderControlComponent implements OnInit {
-
+  data;
   constructor() { }
 
   ngOnInit() {
+    this.data = new Date();
+    console.log(this.data.getHours());
+
   }
 
 }
