@@ -1,3 +1,5 @@
+<p>список заказов за месяц {{mountYear}}</p>
+<button (click)="loadObject()">получить обьект с сервера</button>
 <p>{{data}}</p>
 <table>
   <thead>
@@ -7,11 +9,11 @@
   <th>modelPhone</th>
   </thead>
   <tbody>
-  <tr>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-    <td>4</td>
+  <tr *ngFor="let item of arrOrders">
+    <td>{{item.numberOrder}}</td>
+    <td>{{item.dateOrder}}</td>
+    <td>{{item.brandPhone}}</td>
+    <td>{{item.modelPhone}}</td>
   </tr>
   </tbody>
 </table>
