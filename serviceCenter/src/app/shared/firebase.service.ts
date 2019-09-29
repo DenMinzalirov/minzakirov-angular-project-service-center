@@ -13,11 +13,13 @@ export class FirebaseService {
 
   create(order) {
     return this.http
-      .post<any>(`${FirebaseService.url}.json`, order)
+      .post<any>(`${FirebaseService.url}/${order.dateOrder.substring(3).replace(/\./g,"-")}.json`, order)
       .pipe(map(res => {
-        console.log('response' ,res);
-        return res
+        return {...order, id: res.name}
       }));
-    console.log(order);
+  };
+  load() {
+    console.log('load from base');
+    return this.http.get(`${FirebaseService.url}.json`)
   }
 }

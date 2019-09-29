@@ -1,9 +1,10 @@
 <div>
   <form [formGroup]="order" (ngSubmit)="createOrder()">
     <label>numberOrder</label>
-    <input type="text" formControlName="numberOrder">
+<!--    <div formControlName="numberOrder">{{newNumberOrder}}</div>-->
+    <input type="text" [value]="newNumberOrder" formControlName="numberOrder">
     <label>dateOrder</label>
-    <input type="text" #dateOrder formControlName="dateOrder">
+    <input type="text"  [value]="date" formControlName="dateOrder">
     <label>brandPhone</label>
     <input type="text" formControlName="brandPhone">
     <label>modelPhone</label>
@@ -15,3 +16,6 @@
 <div>
   <pre>{{order.value | json}}</pre>
 </div>
+
+<button type="submit" (click)="loadBase()">загрузить базу</button>
+<button type="submit" (click)="checkBase()">проверить базу</button>

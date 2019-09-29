@@ -10,8 +10,8 @@ export class OrderControlComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.data = new Date();
-    console.log(this.data.getHours());
+    this.data = new Date().toLocaleDateString();
+    console.log(this.data.replace(/\./g,"-"));
 
   }
 
