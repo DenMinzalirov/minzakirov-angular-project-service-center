@@ -15,23 +15,14 @@ export class FirebaseService {
 
   create(order) {
     return this.http
-      .post<any>(`${FirebaseService.url}/${order.dateOrder.substring(3).replace(/\./g,"-")}.json`, order)
-      .pipe(map(res => {
-        return {...order, id: res.name}
-      }));
+      .post<any>(`${FirebaseService.url}/${
+        order.dateOrder.substring(3).replace(/\./g,"-")
+      }.json`, order);
   };
 
   load() {
     return this.http.get(`${FirebaseService.url}.json`)
   };
-
-  loadObjectOrderMount() {
-    return this.load().pipe(
-      map((x) => {
-        Object.values(x[this.mountYear]);
-      })
-    )
-  }
 
   loadNumberOrder() {
     return this.load().pipe(
@@ -40,7 +31,7 @@ export class FirebaseService {
         Object.values(x[this.mountYear]).map((x) => {
           // @ts-ignore
           newNumberOrder.push(x.numberOrder)});
-        return newNumberOrder.length;
+        return newNumberOrder.length + 1;
       })
     )
   }

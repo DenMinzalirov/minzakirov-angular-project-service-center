@@ -1,15 +1,16 @@
 <div>
   <form [formGroup]="order" (ngSubmit)="createOrder()">
     <label>numberOrder</label>
-<!--    <div formControlName="numberOrder">{{newNumberOrder}}</div>-->
     <input type="text" [value]="newNumberOrder" formControlName="numberOrder">
     <label>dateOrder</label>
-    <input type="text"  [value]="date" formControlName="dateOrder">
+    <input type="text" formControlName="dateOrder">
     <label>brandPhone</label>
     <input type="text" formControlName="brandPhone">
     <label>modelPhone</label>
     <input type="text" formControlName="modelPhone">
+
     <button type="submit">Сформировать Заказ</button>
+
   </form>
 </div>
 

@@ -11,6 +11,7 @@ import { OrderAcceptanceComponent } from './order-acceptance/order-acceptance.co
 import { OrderControlComponent } from './order-control/order-control.component';
 import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import { OrderViewComponent } from './order-view/order-view.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {environment} from "../environments/environment";
     AppComponent,
     NavigationComponent,
     OrderAcceptanceComponent,
-    OrderControlComponent
+    OrderControlComponent,
+    OrderViewComponent
   ],
   imports: [
     BrowserModule,
