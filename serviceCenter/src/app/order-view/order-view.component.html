@@ -1,1 +1,34 @@
-<p>Информация о заказе</p>
+<p>Информация о заказах за:
+  <span>
+    <select
+      [(ngModel)]="currentMonth"
+    >
+      <option *ngFor="let item of listMonths" [value]="item">{{item}}</option>
+    </select>
+<!--    <input type="text" (input)="mountYear = $event.target.value">-->
+  </span>
+  месяц
+</p>
+<label>
+  Введите номер заказа
+  <input type="text" [(ngModel)] ="orderInput">
+  <button (click)="onRequest(orderInput)">Запрос</button>
+</label>
+<div>
+  <div>
+    <span>Номер заказа</span><span>{{listOrder[orderInput - 1].numberOrder}}</span>
+  </div>
+  <div>
+    <label>Дата оформление заказа: <span>{{listOrder[orderInput - 1].dateOrder}}</span></label>
+  </div>
+  <div>
+    <label>brandPhone: <span>#</span></label>
+  </div>
+  <div>
+    <label>modelPhone: <span>#</span></label>
+  </div>
+</div>
+<hr>
+<pre>Информация о заказах за {{currentMonth.orderInput}} месяц</pre>
+
+<button (click)="check()">проверочная кнопка</button>

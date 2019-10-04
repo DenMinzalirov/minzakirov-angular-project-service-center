@@ -1,7 +1,7 @@
 <div>
   <form [formGroup]="order" (ngSubmit)="createOrder()">
     <label>numberOrder</label>
-    <input type="text" [value]="newNumberOrder" formControlName="numberOrder">
+    <input type="text" formControlName="numberOrder">
     <label>dateOrder</label>
     <input type="text" formControlName="dateOrder">
     <label>brandPhone</label>
