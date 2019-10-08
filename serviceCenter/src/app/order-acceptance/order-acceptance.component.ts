@@ -1,50 +1,51 @@
 import {
   Component,
   OnInit,
-  DoCheck,
 } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FirebaseService} from "../shared/firebase.service";
 import {Router} from "@angular/router";
+import {debounceTime, delay, map, pluck} from "rxjs/operators";
 
 @Component({
   selector: 'app-order-acceptance',
   templateUrl: './order-acceptance.component.html',
   styleUrls: ['./order-acceptance.component.css']
 })
-export class OrderAcceptanceComponent implements OnInit, DoCheck {
-  order: FormGroup;
+export class OrderAcceptanceComponent implements OnInit {
   date = this.firebaseService.date;
-  // newNumberOrder: number;
   constructor(
+    private fb: FormBuilder,
     private firebaseService: FirebaseService,
-    private router: Router
   ) { }
 
-  ngDoCheck(): void {
-    this.firebaseService.loadNumberOrder().subscribe(x => {
+  order = this.fb.group({
+    numberOrder: [''],
+    dateOrder: [''],
+    brandPhone: [''],
+    modelPhone: ['']
+  });
+
+  patchNumberOrder() {
+    this.firebaseService.loadNumberOrder().subscribe(numOrd => {
       this.order.patchValue({
-        numberOrder: x
+        numberOrder: numOrd,
+        dateOrder: this.date
       })
-    });
-  }
+    })
+  };
 
   ngOnInit() {
-     this.order = new FormGroup({
-      numberOrder: new FormControl(''),
-      dateOrder: new FormControl(this.date),
-      brandPhone: new FormControl(''),
-      modelPhone: new FormControl('')
-    });
+    this.patchNumberOrder()
   };
 
   createOrder() {
-    this.firebaseService.create(this.order.value).subscribe(x => console.log(x));
-    this.ngOnInit();
+    this.firebaseService.create(this.order.value).subscribe(x => this.patchNumberOrder());
+    this.order.reset();
   }
 
 // проверочная функция понять пришла ли база с сервера
   checkBase() {
-    console.log(this.order.value.numberOrder)
+
   }
 }

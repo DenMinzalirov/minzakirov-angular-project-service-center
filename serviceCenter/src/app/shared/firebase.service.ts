@@ -25,14 +25,7 @@ export class FirebaseService {
   };
 
   loadNumberOrder() {
-    return this.load().pipe(
-      map((x) => {
-        const newNumberOrder = [];
-        Object.values(x[this.mountYear]).map((x) => {
-          // @ts-ignore
-          newNumberOrder.push(x.numberOrder)});
-        return newNumberOrder.length + 1;
-      })
-    )
+    return this.load()
+      .pipe(map(x => {return Object.values(x[this.mountYear]).length + 1}))
   }
 }
