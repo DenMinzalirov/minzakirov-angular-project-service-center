@@ -1,7 +1,7 @@
 <p>Информация о заказах за:
   <span>
     <select
-      [(ngModel)]="currentMonth"
+      [ngModel]="currentMonth" (change)="selectCurrentMonth($event.target.value)"
     >
       <option *ngFor="let item of listMonths" [value]="item">{{item}}</option>
     </select>
@@ -10,16 +10,23 @@
   месяц
 </p>
 <label>
-  Введите номер заказа
-  <input type="text" [(ngModel)] ="orderInput">
-  <button (click)="onRequest(orderInput)">Запрос</button>
+  Выбрать номер заказа
+  <select
+    [ngModel]="numberOrder"
+    (change)="selectCurrentOrder($event.target.value)"
+  >
+    <option *ngFor="let item of listOrder" [value]="item.numberOrder">{{item.numberOrder}}</option>
+  </select>
+<!--  <input type="text" [(ngModel)] ="orderInput">-->
+<!--  <button (click)="onRequest(orderInput)">Запрос</button>-->
 </label>
 <div>
+<!--  // надо сделать проверку на наличие поля-->
   <div>
-    <span>Номер заказа</span><span>{{listOrder[orderInput - 1].numberOrder}}</span>
+    <span>Номер заказа</span><span>{{listOrder[orderInput-1].numberOrder}}</span>
   </div>
   <div>
-    <label>Дата оформление заказа: <span>{{listOrder[orderInput - 1].dateOrder}}</span></label>
+    <label>Дата оформление заказа: <span>{{listOrder[orderInput-1].dateOrder}}</span></label>
   </div>
   <div>
     <label>brandPhone: <span>#</span></label>
@@ -29,6 +36,6 @@
   </div>
 </div>
 <hr>
-<pre>Информация о заказах за {{currentMonth.orderInput}} месяц</pre>
+<pre>Информация о заказах за {{currentMonth}} месяц</pre>
 
 <button (click)="check()">проверочная кнопка</button>
