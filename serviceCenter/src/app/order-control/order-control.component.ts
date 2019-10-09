@@ -9,24 +9,31 @@ import {map} from "rxjs/operators";
 })
 export class OrderControlComponent implements OnInit {
   arrOrders;
-  data;
-  mountYear;
+  date = this.firebaseService.date;
+  monthYear = this.firebaseService.mountYear;
+  monthYearListArr;
+  selectedOtherMount;
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
-    this.loadObject();
-    this.mountYear = this.firebaseService.mountYear;
-    this.firebaseService.load().subscribe(x => console.log(x));
-    this.data = this.firebaseService.date;
-
-    this.firebaseService.load().subscribe(console.log)
+    this.loadObject(this.monthYear);
+    this.firebaseService.load().subscribe(x => this.monthYearListArr = Object.keys(x))
   }
-
-  loadObject() {
+// получение всей базы по месяцу для отрисовки
+  loadObject(month) {
     this.firebaseService.load().pipe(
-      // map((x) => {Object.values(x[this.firebaseService.mountYear])})
-    ).subscribe(x => this.arrOrders = Object.values(x[this.firebaseService.mountYear]));
+    ).subscribe(x => this.arrOrders = Object.values(x[month]));
     console.log(this.arrOrders)
   }
+// выбор месяца для отображения
+  selectMountYear(event) {
+    this.loadObject(event)
+    this.selectedOtherMount = event;
+    console.log(event);
+  }
 
+  temp() {
+    // this.firebaseService.load().subscribe(x => this.mountYearList = Object.keys(x))
+    console.log(this.selectedOtherMount)
+  }
 }

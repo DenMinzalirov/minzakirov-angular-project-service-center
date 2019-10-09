@@ -2,10 +2,11 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FirebaseService} from "../shared/firebase.service";
 import {Router} from "@angular/router";
 import {debounceTime, delay, map, pluck} from "rxjs/operators";
+import {ifError} from "assert";
 
 @Component({
   selector: 'app-order-acceptance',
@@ -20,14 +21,14 @@ export class OrderAcceptanceComponent implements OnInit {
   ) { }
 
   order = this.fb.group({
-    numberOrder: [''],
+    numberOrder: ['', [Validators.required]],
     dateOrder: [''],
     brandPhone: [''],
     modelPhone: ['']
   });
 
   patchNumberOrder() {
-    this.firebaseService.loadNumberOrder().subscribe(numOrd => {
+    this.firebaseService.loadLastNumberOrder().subscribe(numOrd => {
       this.order.patchValue({
         numberOrder: numOrd,
         dateOrder: this.date
@@ -46,6 +47,5 @@ export class OrderAcceptanceComponent implements OnInit {
 
 // проверочная функция понять пришла ли база с сервера
   checkBase() {
-
   }
 }

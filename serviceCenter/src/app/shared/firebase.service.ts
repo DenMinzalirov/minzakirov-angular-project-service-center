@@ -24,7 +24,7 @@ export class FirebaseService {
     return this.http.get(`${FirebaseService.url}.json`)
   };
 
-  loadNumberOrder() {
+  loadLastNumberOrder() {
     return this.load()
       .pipe(map(x => {return Object.values(x[this.mountYear]).length + 1}))
   }

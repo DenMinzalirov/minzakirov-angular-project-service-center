@@ -9,7 +9,7 @@
     <label>modelPhone</label>
     <input type="text" formControlName="modelPhone">
 
-    <button type="submit">Сформировать Заказ</button>
+    <button type="submit" [disabled]="order.invalid">Сформировать Заказ</button>
 
   </form>
 </div>

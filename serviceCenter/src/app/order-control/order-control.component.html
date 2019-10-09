@@ -1,6 +1,9 @@
-<p>список заказов за месяц {{mountYear}}</p>
-<button (click)="loadObject()">получить обьект с сервера</button>
-<p>{{data}}</p>
+<label>список заказов за месяц </label>
+<select [ngModel]="monthYear" (change)="selectMountYear($event.target.value)">
+  <option *ngFor="let item of monthYearListArr" [value]="item">{{item}}</option>
+</select>
+<p>Сегодня: {{date}}</p>
+<button (click)="temp()">проверка</button>
 <table>
   <thead>
   <th>numberOrder</th>
