@@ -12,6 +12,8 @@ import { OrderControlComponent } from './order-control/order-control.component';
 import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import { OrderViewComponent } from './order-view/order-view.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from "@angular/material";
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { OrderViewComponent } from './order-view/order-view.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
