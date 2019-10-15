@@ -20,11 +20,22 @@ export class OrderAcceptanceComponent implements OnInit {
     private firebaseService: FirebaseService,
   ) { }
 
+
   order = this.fb.group({
-    numberOrder: ['', [Validators.required]],
+    numberOrder: [{value: '', disabled: false}, [Validators.required]],
     dateOrder: [''],
     brandPhone: [''],
-    modelPhone: ['']
+    modelPhone: [''],
+    nameClient: [''],
+    productType: [''],
+    serialNumber: [''],
+    malfunction: [''],
+    appearance: [''],
+    equipment: [''],
+    receiverNotes: [''],
+    estimatedPrice: [''],
+    prepayment: [''],
+    executor: ['']
   });
 
   patchNumberOrder() {
@@ -32,13 +43,13 @@ export class OrderAcceptanceComponent implements OnInit {
       this.order.patchValue({
         numberOrder: numOrd,
         dateOrder: this.date
-      })
-    })
-  };
+      });
+    });
+  }
 
   ngOnInit() {
-    this.patchNumberOrder()
-  };
+    this.patchNumberOrder();
+  }
 
   createOrder() {
     this.firebaseService.create(this.order.value).subscribe(x => this.patchNumberOrder());
