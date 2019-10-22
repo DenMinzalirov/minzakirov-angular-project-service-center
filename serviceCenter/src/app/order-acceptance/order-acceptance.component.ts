@@ -35,14 +35,18 @@ export class OrderAcceptanceComponent implements OnInit {
     receiverNotes: [''],
     estimatedPrice: [''],
     prepayment: [''],
-    executor: ['']
+    manager: [''],
+    executor: [''],
+    status: ['']
+    // статусы: новый, в работе, ждет запчастей, на согласовании, готов, выдан-успешно, выдан-отказ, не подлежит ремонту
   });
 
   patchNumberOrder() {
     this.firebaseService.loadLastNumberOrder().subscribe(numOrd => {
       this.order.patchValue({
         numberOrder: numOrd,
-        dateOrder: this.date
+        dateOrder: this.date,
+        status: 'новый'
       });
     });
   }

@@ -11,27 +11,32 @@
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="numberOrder">
-      <th mat-header-cell *matHeaderCellDef> numberOrder </th>
+      <th mat-header-cell *matHeaderCellDef> № </th>
       <td mat-cell *matCellDef="let element"> {{element.numberOrder}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Статус заказа </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="dateOrder">
-      <th mat-header-cell *matHeaderCellDef> dateOrder </th>
+      <th mat-header-cell *matHeaderCellDef> Дата </th>
       <td mat-cell *matCellDef="let element"> {{element.dateOrder}} </td>
     </ng-container>
 
     <ng-container matColumnDef="brandPhone">
-      <th mat-header-cell *matHeaderCellDef> brandPhone </th>
+      <th mat-header-cell *matHeaderCellDef> Модель Аппарата </th>
       <td mat-cell *matCellDef="let element"> {{element.brandPhone}} </td>
     </ng-container>
 
     <ng-container matColumnDef="modelPhone">
-      <th mat-header-cell *matHeaderCellDef> modelPhone </th>
+      <th mat-header-cell *matHeaderCellDef>Мобильный номер</th>
       <td mat-cell *matCellDef="let element"> {{element.modelPhone}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="123123123" (click)="getOrder(row)" ></tr>
   </table>
 </div>
 

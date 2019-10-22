@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FirebaseService} from "../shared/firebase.service";
+import {FirebaseService} from '../shared/firebase.service';
 
 @Component({
   selector: 'app-order-control',
@@ -7,11 +7,13 @@ import {FirebaseService} from "../shared/firebase.service";
   styleUrls: ['./order-control.component.css']
 })
 export class OrderControlComponent implements OnInit {
+  // row;
   arrOrders;
-  date = this.firebaseService.date;
-  monthYear = this.firebaseService.mountYear;
+  date = this.firebaseService.date; // сегодняшнее число
+  monthYear = this.firebaseService.mountYear; // текущий месяц
   monthYearListArr;
   selectedOtherMount;
+  tempBase;
 
   displayedColumns = [];
   dataSource = [];
@@ -21,17 +23,21 @@ export class OrderControlComponent implements OnInit {
 
   ngOnInit() {
     this.loadObject(this.monthYear);
-    this.firebaseService.load().subscribe(x => this.monthYearListArr = Object.keys(x))
+    // получили список месяцев из базы
+    this.firebaseService.load().subscribe(x => {
+      this.monthYearListArr = Object.keys(x);
+      this.selectedOtherMount = this.monthYear;
+    });
+    // temp
+    this.firebaseService.load().subscribe(tempBase => this.tempBase = tempBase);
   }
 // получение всей базы по месяцу для отрисовки
   loadObject(month) {
-    this.firebaseService.load().pipe(
-    ).subscribe(x => {
-      this.dataSource = Object.values(x[month])
-      this.displayedColumns = ['numberOrder', 'dateOrder', 'brandPhone', 'modelPhone'];
-
-    });
-    console.log(this.arrOrders)
+    this.firebaseService.load()
+      .subscribe(x => {
+        this.dataSource = Object.values(x[month]);
+        this.displayedColumns = ['numberOrder', 'status', 'dateOrder', 'brandPhone', 'modelPhone'];
+      });
   }
 // выбор месяца для отображения
   selectMountYear(event) {
@@ -39,8 +45,14 @@ export class OrderControlComponent implements OnInit {
     this.selectedOtherMount = event;
     console.log(event);
   }
+// получил обьект заказа на клик по строке в таблице
+  getOrder(order) {
+    console.log(order);
+  }
 
   temp() {
-    console.log(this.arrOrders)
+    const mount = this.selectedOtherMount;
+    console.log(mount);
+    console.log(this.tempBase);
   }
 }
