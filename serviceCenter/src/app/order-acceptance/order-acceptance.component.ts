@@ -2,8 +2,8 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {FirebaseService} from "../shared/firebase.service";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FirebaseService} from '../shared/firebase.service';
 import {Router} from "@angular/router";
 import {debounceTime, delay, map, pluck} from "rxjs/operators";
 import {ifError} from "assert";
@@ -14,7 +14,9 @@ import {ifError} from "assert";
   styleUrls: ['./order-acceptance.component.css']
 })
 export class OrderAcceptanceComponent implements OnInit {
-  date = this.firebaseService.date;
+  // date = this.firebaseService.date;
+  date = new Date().toLocaleDateString();
+  mountYear = this.date.substring(3).replace(/\./g, '-');
   constructor(
     private fb: FormBuilder,
     private firebaseService: FirebaseService,
@@ -42,11 +44,24 @@ export class OrderAcceptanceComponent implements OnInit {
   });
 
   patchNumberOrder() {
-    this.firebaseService.loadLastNumberOrder().subscribe(numOrd => {
+    this.firebaseService.loadLastNumberOrder(this.mountYear).subscribe(numOrd => {
       this.order.patchValue({
         numberOrder: numOrd,
         dateOrder: this.date,
-        status: 'новый'
+        status: 'новый',
+        brandPhone: '',
+        modelPhone: '',
+        nameClient: '',
+        productType: '',
+        serialNumber: '',
+        malfunction: '',
+        appearance: '',
+        equipment: '',
+        receiverNotes: '',
+        estimatedPrice: '',
+        prepayment: '',
+        manager: '',
+        executor: '',
       });
     });
   }
@@ -56,8 +71,8 @@ export class OrderAcceptanceComponent implements OnInit {
   }
 
   createOrder() {
-    this.firebaseService.create(this.order.value).subscribe(x => this.patchNumberOrder());
-    this.order.reset();
+    this.firebaseService.create(this.order.value);
+
   }
 
 // проверочная функция понять пришла ли база с сервера

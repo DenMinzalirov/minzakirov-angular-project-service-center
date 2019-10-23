@@ -1,46 +1,34 @@
 <app-tempp>
-  <h1>{{currentMonth}}</h1>
+  <h1>Вы смотрите заказы за {{currentMonth}}</h1>
 </app-tempp>
 
 <button (click)="check()">проверочная кнопка</button>
 <p>Информация о заказах за:
     <select
-      [ngModel]="currentMonth"
+      [ngModel]="monthYear"
       (change)="selectCurrentMonth($event.target.value)"
     >
-      <option *ngFor="let item of listMonths" [value]="item">{{item}}</option>
+      <option *ngFor="let item of monthYearListArr" [value]="item">{{item}}</option>
     </select>
   месяц
 </p>
 <label>
   Выбрать номер заказа
-  <select
-    [ngModel]="numberOrder"
+  <select #currentOrder
     (change)="selectCurrentOrder($event.target.value)"
   >
-    <option *ngFor="let item of listOrder" [value]="item.numberOrder">{{item.numberOrder}}</option>
+    <option value="" hidden>Выбрать</option>
+    <option *ngFor="let item of ordersMountList" >{{item.numberOrder}}</option>
   </select>
 
-<!--  <input type="text" [(ngModel)] ="orderInput">-->
-<!--  <button (click)="onRequest(orderInput)">Запрос</button>-->
 </label>
 <div>
-<!--  // надо сделать проверку на наличие поля-->
-<!--  <div>-->
-<!--    <span>Номер заказа</span><span>{{listOrder[orderInput-1].numberOrder}}</span>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label>Дата оформление заказа: <span>{{listOrder[orderInput-1].dateOrder}}</span></label>-->
-<!--  </div>-->
-  <div>
-    <label>brandPhone: <span>#</span></label>
-  </div>
-  <div>
-    <label>modelPhone: <span>#</span></label>
-  </div>
-</div>
+
 <hr>
+  <ng-container *ngIf="currentOrder.value">
+  <app-order-acceptance></app-order-acceptance>
+  </ng-container>
 <pre>Информация о заказах за {{currentMonth}} месяц</pre>
 <pre>Информация о заказах выбраном заказе {{item | json}} </pre>
 
-<button (click)="check()">проверочная кнопка</button>
+<!--<button (click)="check()">проверочная кнопка</button>-->

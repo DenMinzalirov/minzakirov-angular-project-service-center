@@ -10,11 +10,14 @@ import {Observable} from 'rxjs';
   styleUrls: ['./order-view.component.css']
 })
 export class OrderViewComponent implements OnInit {
+  date = this.firebaseService.date; // сегодняшнее число
+  monthYear = this.firebaseService.mountYear; // текущий месяц
   currentMonth = new Date().toLocaleDateString().substring(3).replace(/\./g, '-');
-  listMonths;
-  numberOrder = 1;
+  monthYearListArr; // список месяцев из базы
+  ordersMountList; // массив с закзами за месяц
+  // numberOrder = 1;
   allBase;
-  orderInput = 1;
+  orderInput;
   listOrder
   //   = [{
   //   numberOrder: 1,
@@ -25,34 +28,38 @@ export class OrderViewComponent implements OnInit {
   ;
   items: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase, private firebaseService: FirebaseService) {
-    this.items = db.list('order').valueChanges();
+  constructor(private firebaseService: FirebaseService) {
+    // this.items = db.list('order').valueChanges();
   }
 
   ngOnInit() {
-    this.firebaseService.load().subscribe(x => {
-      this.allBase = x;
-      this.listMonths = Object.keys(x);
-      this.listOrder = Object.values(x[this.currentMonth]);
-    });
+    this.firebaseService.loadAllBase()
+      .subscribe((x) => {
+        this.monthYearListArr = Object.keys(x);
+      });
+    // получаю массив заказов за месяц текущий
+    this.firebaseService.load(this.monthYear)
+      .subscribe((x) => {
+        this.ordersMountList = x;
+      });
   }
 
   selectCurrentMonth(event) {
-    this.currentMonth = event;
-    this.listOrder = Object.values(this.allBase[event]);
+    // формируем в массив отображаемых заказов за выбраный месяц
+    this.firebaseService.load(event)
+      .subscribe((x) => {
+        this.ordersMountList = x;
+      });
   }
 
   selectCurrentOrder(event) {
     this.orderInput = event;
-    console.log(this.orderInput);
+    console.log(this.ordersMountList[this.orderInput - 1]);
   }
 
   check() {
-    console.log(this.items.subscribe(console.log));
-
-    console.log(this.allBase[this.currentMonth]);
-    console.log(Object.values(this.allBase));
-
+    console.log(this.ordersMountList);
+    // this.firebaseService.load(this.monthYear).subscribe(console.log);
   }
 
 }
