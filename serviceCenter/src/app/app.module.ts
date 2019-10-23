@@ -15,6 +15,7 @@ import { OrderViewComponent } from './order-view/order-view.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule} from '@angular/material';
 import { TemppComponent } from './order-view/tempp/tempp.component';
+import { FormComponent } from './form/form.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TemppComponent } from './order-view/tempp/tempp.component';
     OrderAcceptanceComponent,
     OrderControlComponent,
     OrderViewComponent,
-    TemppComponent
+    TemppComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

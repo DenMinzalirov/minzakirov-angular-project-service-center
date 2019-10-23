@@ -1,7 +1,5 @@
-
-
 <div class="form_wrap">
-  <form [formGroup]="order" (ngSubmit)="createOrder()" class="example-form">
+  <form [formGroup]="order" (ngSubmit)="createOrder(order.value)" class="example-form">
     <mat-form-field class="example-full-width">
       <input matInput placeholder="numberOrder (disabled)" formControlName="numberOrder">
     </mat-form-field>
@@ -49,6 +47,7 @@
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Исполнитель" formControlName="executor">
     </mat-form-field>
+    <ng-content select="button"></ng-content>
 
     <button mat-stroked-button color="primary" [disabled]="order.invalid">Сформировать Заказ</button>
   </form>

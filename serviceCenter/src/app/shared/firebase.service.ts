@@ -10,7 +10,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 export class FirebaseService {
   // static url = 'https://servicecentr-1415e.firebaseio.com/order';
   date = new Date().toLocaleDateString();
-  mountYear = this.date.substring(3).replace(/\./g, '-');
+  monthYear = this.date.substring(3).replace(/\./g, '-');
 
   constructor(
     private http: HttpClient,
@@ -20,7 +20,7 @@ export class FirebaseService {
   }
 
   create(order) {
-    this.db.object(`orders/${this.mountYear}/${order.numberOrder}`).set(order);
+    this.db.object(`orders/${this.monthYear}/${order.numberOrder}`).set(order);
 
     // return this.http
     //   .post<any>(`${FirebaseService.url}/${
@@ -28,8 +28,8 @@ export class FirebaseService {
     //   }.json`, order);
   }
 
-  load(mountYear) {
-    return this.db.list(`orders/${mountYear}`).valueChanges();
+  load(monthYear) {
+    return this.db.list(`orders/${monthYear}`).valueChanges();
     // return this.http.get(`${FirebaseService.url}.json`);
   }
 
@@ -38,7 +38,12 @@ export class FirebaseService {
   }
 
 // вспомогательная функция для получения последнего нимера заказа
-  loadLastNumberOrder(mountYear) {
-    return this.load(mountYear).pipe(map(arrMountOrderAll => arrMountOrderAll.length + 1));
+  loadLastNumberOrder(monthYear) {
+    return this.load(monthYear).pipe(map(arrMonthOrderAll => arrMonthOrderAll.length + 1));
+  }
+
+  // запрос конкретного заказа
+  loadOrder(monthOrder, numberOrder) {
+    return this.db.object(`orders/${monthOrder}/${numberOrder}`).valueChanges();
   }
 }

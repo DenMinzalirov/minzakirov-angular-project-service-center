@@ -14,7 +14,7 @@
 </p>
 <label>
   Выбрать номер заказа
-  <select #currentOrder
+  <select #currentOrderSelected
     (change)="selectCurrentOrder($event.target.value)"
   >
     <option value="" hidden>Выбрать</option>
@@ -25,8 +25,15 @@
 <div>
 
 <hr>
-  <ng-container *ngIf="currentOrder.value">
-  <app-order-acceptance></app-order-acceptance>
+  <ng-container *ngIf="currentOrderSelected.value" >
+    <app-form
+      [currentOrder]="orderOutput$"
+      (submitted)="updateUser($event)"
+    >
+      <button type="submit" mat-stroked-button color="primary">
+        Update
+      </button>
+    </app-form>
   </ng-container>
 <pre>Информация о заказах за {{currentMonth}} месяц</pre>
 <pre>Информация о заказах выбраном заказе {{item | json}} </pre>

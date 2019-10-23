@@ -8,7 +8,7 @@ import {FirebaseService} from '../shared/firebase.service';
 })
 export class OrderControlComponent implements OnInit {
   date = this.firebaseService.date; // сегодняшнее число
-  monthYear = this.firebaseService.mountYear; // текущий месяц
+  monthYear = this.firebaseService.monthYear; // текущий месяц
   monthYearListArr;
   displayedColumns = [];
   dataSource = [];
