@@ -28,7 +28,7 @@
   <ng-container *ngIf="currentOrderSelected.value" >
     <app-form
       [currentOrder]="orderOutput$"
-      (submitted)="updateUser($event)"
+      (submitted)="updateOrder($event)"
     >
       <button type="submit" mat-stroked-button color="primary">
         Update

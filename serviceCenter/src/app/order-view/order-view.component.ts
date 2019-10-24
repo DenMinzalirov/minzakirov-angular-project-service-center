@@ -1,7 +1,7 @@
 import {AfterContentInit, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
 import {FirebaseService} from '../shared/firebase.service';
 import {map} from 'rxjs/operators';
-import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Observable, of} from 'rxjs';
 
 @Component({
@@ -23,9 +23,14 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
   orderOutput$: Observable<any>;
   // items: Observable<any[]>;
   // orderObservable: Observable<any>;
+  itemsRef: AngularFireList<any>;
 
   constructor(private firebaseService: FirebaseService, db: AngularFireDatabase) {
-    this.items = db.list('orders').snapshotChanges();
+    this.itemsRef = db.list('orders/10-2019');
+    // this.items = this.itemsRef.snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+    // );
   }
 
   ngOnInit() {
@@ -62,6 +67,7 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
   selectCurrentOrder(event) {
     this.numberOrder = event;
     // TODO стрим для выбраного заказа почему не меняет значение при изменении
+    // ngOnChanges решение
     this.orderOutput$ = this.firebaseService.loadOrder(this.currentMonth, this.numberOrder);
     console.log(this.orderOutput$.subscribe(console.log));
     // this.orderOutput$ = this.firebaseService.load(event);
@@ -70,13 +76,18 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
     // console.log(this.ordersMountList[event - 1]);
     // this.orderOutput = this.ordersMountList[event - 1];
   }
-  updateUser(event) {
-    console.log(event);
+  updateOrder(event) {
+    this.firebaseService.updateOrder(event, this.currentMonth);
+    // console.log(event);
+    // this.itemsRef.update(event.numberOrder.toString(), event);
   }
 
   check() {
-    console.log(this.items.subscribe(console.log));
-    // console.log(this.currentMonth);
+    // console.log(this.items
+    //   .subscribe(console.log));
+    // this.itemsRef.update('8', { executor: 'Андрей' });
+
+    console.log(this.currentMonth);
     // console.log(this.orderOutput$);
     // this.firebaseService.load(this.monthYear).subscribe(console.log);
   }

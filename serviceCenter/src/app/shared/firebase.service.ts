@@ -46,4 +46,9 @@ export class FirebaseService {
   loadOrder(monthOrder, numberOrder) {
     return this.db.object(`orders/${monthOrder}/${numberOrder}`).valueChanges();
   }
+
+  // обновление существующенго заказа в базе
+  updateOrder(updateObject, monthOrders) {
+    this.db.list(`orders/${monthOrders}`).update(updateObject.numberOrder.toString(), updateObject);
+  }
 }
