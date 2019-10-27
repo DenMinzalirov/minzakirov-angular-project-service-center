@@ -4,9 +4,8 @@
 </select>
 <p>Сегодня: {{date}}</p>
 <button (click)="temp()">проверка</button>
-
 <hr>
-
+<router-outlet name="popup"></router-outlet>
 <div class="tableWrap">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -36,7 +35,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="123123123" (click)="getOrder(row)" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="123123123" (dblclick)="getOrder(row)" ></tr>
   </table>
 </div>
 

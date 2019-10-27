@@ -1,59 +1,69 @@
+<button (click)="checkBase()">
+  проверка
+</button>
+<app-form
+  [currentOrder]="clearOrder"
+  (submitted)="updateOrder($event)"
+>
+  <button type="submit" mat-stroked-button color="primary">
+    Create
+  </button>
+</app-form>
 
+<!--<div class="form_wrap">-->
+<!--  <form [formGroup]="order" (ngSubmit)="createOrder()" class="example-form">-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="numberOrder (disabled)" formControlName="numberOrder">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="dateOrder" formControlName="dateOrder">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Имя клиента" formControlName="nameClient">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Мобильный номер" formControlName="modelPhone">-->
+<!--    </mat-form-field>-->
+<!--    <div>Изделие и неисправности</div>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Тип изделия" formControlName="productType">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Серийный номер / IMEI" formControlName="serialNumber">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Модель Аппарата" formControlName="brandPhone">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <textarea matInput placeholder="Неисправность" formControlName="malfunction"></textarea>-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Внешний вид" formControlName="appearance">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <textarea matInput placeholder="Комплектация" formControlName="equipment"></textarea>-->
+<!--    </mat-form-field>-->
+<!--    <div>Дополнительная информация</div>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <textarea matInput placeholder="Заметки приемщика" formControlName="receiverNotes"></textarea>-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Ориентировочная цена" formControlName="estimatedPrice">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Предоплата" formControlName="prepayment">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Менеджер" formControlName="manager">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field class="example-full-width">-->
+<!--      <input matInput placeholder="Исполнитель" formControlName="executor">-->
+<!--    </mat-form-field>-->
 
-<div class="form_wrap">
-  <form [formGroup]="order" (ngSubmit)="createOrder()" class="example-form">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="numberOrder (disabled)" formControlName="numberOrder">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="dateOrder" formControlName="dateOrder">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Имя клиента" formControlName="nameClient">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Мобильный номер" formControlName="modelPhone">
-    </mat-form-field>
-    <div>Изделие и неисправности</div>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Тип изделия" formControlName="productType">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Серийный номер / IMEI" formControlName="serialNumber">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Модель Аппарата" formControlName="brandPhone">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Неисправность" formControlName="malfunction"></textarea>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Внешний вид" formControlName="appearance">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Комплектация" formControlName="equipment"></textarea>
-    </mat-form-field>
-    <div>Дополнительная информация</div>
-    <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Заметки приемщика" formControlName="receiverNotes"></textarea>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Ориентировочная цена" formControlName="estimatedPrice">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Предоплата" formControlName="prepayment">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Менеджер" formControlName="manager">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Исполнитель" formControlName="executor">
-    </mat-form-field>
-
-    <button mat-stroked-button color="primary" [disabled]="order.invalid">Сформировать Заказ</button>
-  </form>
-</div>
+<!--    <button mat-stroked-button color="primary" [disabled]="order.invalid">Сформировать Заказ</button>-->
+<!--  </form>-->
+<!--</div>-->
 
 <div>
-  <pre>{{order.value | json}}</pre>
+<!--  <pre>{{order.value | json}}</pre>-->
 </div>

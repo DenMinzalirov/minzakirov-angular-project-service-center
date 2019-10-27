@@ -16,6 +16,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule} from '@angular/material';
 import { TemppComponent } from './order-view/tempp/tempp.component';
 import { FormComponent } from './form/form.component';
+import { QuickEditComponent } from './order-control/quick-edit/quick-edit.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FormComponent } from './form/form.component';
     OrderControlComponent,
     OrderViewComponent,
     TemppComponent,
-    FormComponent
+    FormComponent,
+    QuickEditComponent
   ],
   imports: [
     BrowserModule,

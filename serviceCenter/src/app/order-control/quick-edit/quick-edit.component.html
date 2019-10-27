@@ -1,0 +1,10 @@
+<p>quick-edit works!</p>
+<app-form
+  [currentOrder]="orderOutput$"
+  (submitted)="updateOrder($event)"
+>
+  <button type="submit" mat-stroked-button color="primary">
+    Update
+  </button>
+</app-form>
+<h2>{{ order | json}}</h2>

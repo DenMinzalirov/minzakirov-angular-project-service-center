@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FirebaseService} from '../shared/firebase.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-order-control',
@@ -13,7 +14,9 @@ export class OrderControlComponent implements OnInit {
   displayedColumns = [];
   dataSource = [];
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService,
+              private router: Router
+  ) { }
 
   ngOnInit() {
     this.displayedColumns = ['numberOrder', 'status', 'dateOrder', 'brandPhone', 'modelPhone'];
@@ -37,7 +40,11 @@ export class OrderControlComponent implements OnInit {
   }
 // получил обьект заказа на клик по строке в таблице
   getOrder(order) {
-    console.log(order);
+    this.router.navigate(['order-control', order.numberOrder], {queryParams: {
+        numberOrder: order.numberOrder,
+        monthYear: this.monthYear
+      }});
+    // this.router.navigate([{ outlets: { popup: ['compose'] } }]);
   }
 
   temp() {

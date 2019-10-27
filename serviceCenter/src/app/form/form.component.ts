@@ -49,7 +49,13 @@ export class FormComponent implements OnInit, AfterContentInit, AfterViewInit, O
   }
 // TODO не уверен стоит ли оставлять в виде потока или сделать обычную переменную @Input
   ngOnChanges(changes: SimpleChanges): void {
+    // setTimeout(() => {
+    //   this.currentOrder.subscribe(x => {
+    //     this.order.patchValue(x);
+    //   });
+    // }, 0);
     this.currentOrder.subscribe(x => {
+      // setTimeout(() => this.order.patchValue(x), 0);
       this.order.patchValue(x);
     });
   }
