@@ -9,6 +9,7 @@ import {
   Output, SimpleChanges
 } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -41,21 +42,16 @@ export class FormComponent implements OnInit, AfterContentInit, AfterViewInit, O
   @Output() submitted = new EventEmitter();
 
   @Input() currentOrder;
+  @Input() currentStatus;
 
   ngOnInit() {
-    // this.currentOrder.subscribe(x => {
-    //   this.order.patchValue(x);
-    // });
   }
 // TODO не уверен стоит ли оставлять в виде потока или сделать обычную переменную @Input
   ngOnChanges(changes: SimpleChanges): void {
-    // setTimeout(() => {
-    //   this.currentOrder.subscribe(x => {
-    //     this.order.patchValue(x);
-    //   });
-    // }, 0);
+    this.currentStatus.subscribe(x => {
+      this.order.patchValue({status: x});
+    });
     this.currentOrder.subscribe(x => {
-      // setTimeout(() => this.order.patchValue(x), 0);
       this.order.patchValue(x);
     });
   }

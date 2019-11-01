@@ -8,11 +8,15 @@ import {QuickEditComponent} from './order-control/quick-edit/quick-edit.componen
 
 const routes: Routes = [
 
-  {path: '', component: OrderAcceptanceComponent},
+  // {path: '', component: OrderAcceptanceComponent},
   {path: 'order-control', component: OrderControlComponent},
 
   {path: 'order-control/:id', component: QuickEditComponent},
-  {path: 'order-view', component: OrderViewComponent}
+  {path: 'order-view', component: OrderViewComponent},
+  {
+    path: 'auth',
+    loadChildren: './auth/auth.module#AuthModule'
+  }
 ];
 
 @NgModule({

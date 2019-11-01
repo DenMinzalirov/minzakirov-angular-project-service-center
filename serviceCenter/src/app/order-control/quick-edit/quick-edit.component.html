@@ -1,10 +1,18 @@
 <p>quick-edit works!</p>
+<p>{{status}}</p>
+<button (click)="check()" >проверка</button>
+<select (change)="selectNewStatus($event.target.value)">
+  <option value="" hidden>Выбрать</option>
+  <option *ngFor="let item of statusArr" >{{item}}</option>
+</select>
 <app-form
   [currentOrder]="orderOutput$"
+  [currentStatus]="newStatus$"
   (submitted)="updateOrder($event)"
 >
   <button type="submit" mat-stroked-button color="primary">
     Update
   </button>
 </app-form>
+<!--<p>{{order.status}}</p>-->
 <h2>{{ order | json}}</h2>

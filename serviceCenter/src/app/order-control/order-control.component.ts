@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FirebaseService} from '../shared/firebase.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-order-control',
@@ -12,7 +13,9 @@ export class OrderControlComponent implements OnInit {
   monthYear = this.firebaseService.monthYear; // текущий месяц
   monthYearListArr;
   displayedColumns = [];
+  // TODO определить обьект для отрисовки таблицы
   dataSource = [];
+  dataSourceFilter: MatTableDataSource<any>;
 
   constructor(private firebaseService: FirebaseService,
               private router: Router
@@ -24,6 +27,7 @@ export class OrderControlComponent implements OnInit {
     this.firebaseService.load(this.monthYear)
       .subscribe((x) => {
         this.dataSource = x;
+        this.dataSourceFilter = new MatTableDataSource(x);
       });
     // получили список месяцев из базы
     this.firebaseService.loadAllBase()
@@ -45,6 +49,13 @@ export class OrderControlComponent implements OnInit {
         monthYear: this.monthYear
       }});
     // this.router.navigate([{ outlets: { popup: ['compose'] } }]);
+  }
+
+  applyFilter(filterValue: string) {
+    console.log(filterValue);
+    console.log(this.dataSourceFilter);
+
+    this.dataSourceFilter.filter = filterValue.trim().toLowerCase();
   }
 
   temp() {

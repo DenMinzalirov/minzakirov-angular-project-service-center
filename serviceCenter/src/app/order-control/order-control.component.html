@@ -7,7 +7,10 @@
 <hr>
 <router-outlet name="popup"></router-outlet>
 <div class="tableWrap">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSourceFilter" class="mat-elevation-z8">
 
     <ng-container matColumnDef="numberOrder">
       <th mat-header-cell *matHeaderCellDef> № </th>

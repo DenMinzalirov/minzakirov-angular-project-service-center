@@ -1,0 +1,58 @@
+<p>auth works!</p>
+<!--<ngx-auth-firebaseui></ngx-auth-firebaseui>-->
+
+
+<div *ngIf="user | async as user ; else showLogin">
+  <h1>Hello {{ user.email }}!</h1>
+  <button (click)="logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+  <p>Please login.</p>
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <div class="form-group">
+      <label for="email">E-Mail</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        ngModel
+        name="email"
+        required
+        email
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        ngModel
+        name="password"
+        required
+        minlength="6"
+      />
+    </div>
+    <div>
+      <button
+        type="submit"
+        [disabled]="!authForm.valid"
+      >
+        Login
+<!--        {{ isLoginMode ? 'Login' : 'Sign Up' }}-->
+      </button>
+      |
+<!--      <button (click)="onSwitchMode()" type="button">-->
+<!--        Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}-->
+<!--      </button>-->
+    </div>
+  </form>
+
+</ng-template>
+<button (click)="check()">проверка</button>
+
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>

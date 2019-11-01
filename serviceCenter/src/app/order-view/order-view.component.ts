@@ -3,6 +3,7 @@ import {FirebaseService} from '../shared/firebase.service';
 import {map} from 'rxjs/operators';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Observable, of} from 'rxjs';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-order-view',
@@ -23,10 +24,13 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
   orderOutput$: Observable<any>;
   // items: Observable<any[]>;
   // orderObservable: Observable<any>;
-  itemsRef: AngularFireList<any>;
+  // itemsRef: AngularFireList<any>;
 
-  constructor(private firebaseService: FirebaseService, db: AngularFireDatabase) {
-    this.itemsRef = db.list('orders/10-2019');
+  constructor(private firebaseService: FirebaseService, private db: AngularFireDatabase,
+              private router: Router
+  ) {
+    // TODO не забыть все отрефакторить род  реализацию quick-edit
+    // this.itemsRef = db.list('orders/10-2019');
     // this.items = this.itemsRef.snapshotChanges().pipe(
     //   map(changes =>
     //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
@@ -65,11 +69,17 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
   }
 
   selectCurrentOrder(event) {
-    this.numberOrder = event;
+    this.router.navigate(['order-control', event], {queryParams: {
+        numberOrder: event,
+        monthYear: this.monthYear
+      }});
+
+
+    // this.numberOrder = event;
     // TODO стрим для выбраного заказа почему не меняет значение при изменении
     // ngOnChanges решение
-    this.orderOutput$ = this.firebaseService.loadOrder(this.currentMonth, this.numberOrder);
-    console.log(this.orderOutput$.subscribe(console.log));
+    // this.orderOutput$ = this.firebaseService.loadOrder(this.currentMonth, this.numberOrder);
+    // console.log(this.orderOutput$.subscribe(console.log));
     // this.orderOutput$ = this.firebaseService.load(event);
     //  формируем заказ за выбраный номер
     // this.orderInput = event;

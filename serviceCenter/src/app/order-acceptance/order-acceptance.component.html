@@ -3,6 +3,7 @@
 </button>
 <app-form
   [currentOrder]="clearOrder"
+  [currentStatus]="status"
   (submitted)="updateOrder($event)"
 >
   <button type="submit" mat-stroked-button color="primary">

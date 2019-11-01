@@ -12,11 +12,14 @@ import { OrderControlComponent } from './order-control/order-control.component';
 import {HttpClientModule} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import { OrderViewComponent } from './order-view/order-view.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule} from '@angular/material';
 import { TemppComponent } from './order-view/tempp/tempp.component';
 import { FormComponent } from './form/form.component';
 import { QuickEditComponent } from './order-control/quick-edit/quick-edit.component';
+import {AuthModule} from './auth/auth.module';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { QuickEditComponent } from './order-control/quick-edit/quick-edit.compon
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    AuthModule,
+    BrowserAnimationsModule,
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
