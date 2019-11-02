@@ -13,7 +13,7 @@ export class FirebaseService {
   monthYear = this.date.substring(3).replace(/\./g, '-');
 
   constructor(
-    private http: HttpClient,
+    // private http: HttpClient,
     private db: AngularFireDatabase
   ) {
     // this.orders = db.list('order').valueChanges();
@@ -27,7 +27,7 @@ export class FirebaseService {
     //     order.dateOrder.substring(3).replace(/\./g, '-')
     //   }.json`, order);
   }
-
+    // загрузка только одного месяца
   load(monthYear) {
     return this.db.list(`orders/${monthYear}`).valueChanges();
     // return this.http.get(`${FirebaseService.url}.json`);

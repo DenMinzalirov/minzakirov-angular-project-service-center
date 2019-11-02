@@ -40,7 +40,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    AuthModule,
+    // AuthModule,
     BrowserAnimationsModule,
     NgxAuthFirebaseUIModule.forRoot(environment.firebase)
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FirebaseService} from '../../shared/firebase.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-control',
@@ -11,11 +12,12 @@ import {MatTableDataSource} from '@angular/material';
 export class OrderControlComponent implements OnInit {
   date = this.firebaseService.date; // сегодняшнее число
   monthYear = this.firebaseService.monthYear; // текущий месяц
-  monthYearListArr;
+  monthYearListArr: string[];
   displayedColumns = [];
   // TODO определить обьект для отрисовки таблицы
-  dataSource = [];
+  // dataSource = [];
   dataSourceFilter: MatTableDataSource<any>;
+  // tempDataSours = this.firebaseService.load(this.monthYear).pipe();
 
   constructor(private firebaseService: FirebaseService,
               private router: Router
@@ -26,7 +28,7 @@ export class OrderControlComponent implements OnInit {
     // выводит в таблицу за текущий месяц
     this.firebaseService.load(this.monthYear)
       .subscribe((x) => {
-        this.dataSource = x;
+        // this.dataSource = x;
         this.dataSourceFilter = new MatTableDataSource(x);
       });
     // получили список месяцев из базы
@@ -37,10 +39,12 @@ export class OrderControlComponent implements OnInit {
   }
 // выбор месяца для отображения
   selectMountYear(event) {
-    this.firebaseService.load(event)
-      .subscribe((x) => {
-        this.dataSource = x;
-      });
+    this.monthYear = event;
+    this.ngOnInit();
+    // this.firebaseService.load(event)
+    //   .subscribe((x) => {
+    //     this.dataSource = x;
+    //   });
   }
 // получил обьект заказа на клик по строке в таблице
   getOrder(order) {
@@ -52,14 +56,11 @@ export class OrderControlComponent implements OnInit {
   }
 // фильтр строка
   applyFilter(filterValue: string) {
-    console.log(filterValue);
-    console.log(this.dataSourceFilter);
-
     this.dataSourceFilter.filter = filterValue.trim().toLowerCase();
   }
 
   temp() {
-    console.log(this.dataSource);
+    // console.log(this.dataSource);
 
   }
 }

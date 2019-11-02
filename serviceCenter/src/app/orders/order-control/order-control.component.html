@@ -1,3 +1,5 @@
+<!--<div>{{tempDataSours | async | json}}</div>-->
+
 <label>список заказов за месяц </label>
 <select [ngModel]="monthYear" (change)="selectMountYear($event.target.value)">
   <option *ngFor="let item of monthYearListArr" [value]="item">{{item}}</option>
@@ -5,7 +7,6 @@
 <p>Сегодня: {{date}}</p>
 <button (click)="temp()">проверка</button>
 <hr>
-<router-outlet name="popup"></router-outlet>
 <div class="tableWrap">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
