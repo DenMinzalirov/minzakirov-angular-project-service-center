@@ -20,22 +20,5 @@
     <option value="" hidden>Выбрать</option>
     <option *ngFor="let item of ordersMountList" >{{item.numberOrder}}</option>
   </select>
-
 </label>
-<div>
-
 <hr>
-<!--  <ng-container *ngIf="currentOrderSelected.value" >-->
-<!--    <app-form-->
-<!--      [currentOrder]="orderOutput$"-->
-<!--      (submitted)="updateOrder($event)"-->
-<!--    >-->
-<!--      <button type="submit" mat-stroked-button color="primary">-->
-<!--        Update-->
-<!--      </button>-->
-<!--    </app-form>-->
-<!--  </ng-container>-->
-<pre>Информация о заказах за {{currentMonth}} месяц</pre>
-<pre>Информация о заказах выбраном заказе {{item | json}} </pre>
-
-<!--<button (click)="check()">проверочная кнопка</button>-->

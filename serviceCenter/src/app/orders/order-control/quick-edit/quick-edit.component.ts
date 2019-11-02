@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {forkJoin, Observable, of, Subscription} from 'rxjs';
-import {FirebaseService} from '../../shared/firebase.service';
+import {FirebaseService} from '../../../shared/firebase.service';
 import {map, tap} from 'rxjs/operators';
 
 @Component({

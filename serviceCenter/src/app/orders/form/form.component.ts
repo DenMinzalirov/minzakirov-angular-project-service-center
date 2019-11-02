@@ -9,15 +9,19 @@ import {
   Output, SimpleChanges
 } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit, AfterContentInit, AfterViewInit, OnChanges {
-  constructor(private fb: FormBuilder) { }
+export class FormComponent implements OnInit, OnChanges  {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
 
   order = this.fb.group({
     numberOrder: [{value: '', disabled: false}, [Validators.required]],
@@ -56,13 +60,8 @@ export class FormComponent implements OnInit, AfterContentInit, AfterViewInit, O
     });
   }
 
-  ngAfterViewInit(): void {
-  }
-
-  ngAfterContentInit(): void {
-  }
-
   createOrder(value) {
     this.submitted.emit(value);
+    this.router.navigate(['orders/order-created']);
   }
 }

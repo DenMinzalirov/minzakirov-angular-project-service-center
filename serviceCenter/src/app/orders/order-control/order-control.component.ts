@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FirebaseService} from '../shared/firebase.service';
+import {FirebaseService} from '../../shared/firebase.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material';
 
@@ -44,13 +44,13 @@ export class OrderControlComponent implements OnInit {
   }
 // получил обьект заказа на клик по строке в таблице
   getOrder(order) {
-    this.router.navigate(['order-control', order.numberOrder], {queryParams: {
+    this.router.navigate(['orders', order.numberOrder], {queryParams: {
         numberOrder: order.numberOrder,
         monthYear: this.monthYear
       }});
     // this.router.navigate([{ outlets: { popup: ['compose'] } }]);
   }
-
+// фильтр строка
   applyFilter(filterValue: string) {
     console.log(filterValue);
     console.log(this.dataSourceFilter);

@@ -1,5 +1,5 @@
 import {AfterContentInit, AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
-import {FirebaseService} from '../shared/firebase.service';
+import {FirebaseService} from '../../shared/firebase.service';
 import {map} from 'rxjs/operators';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Observable, of} from 'rxjs';
@@ -55,7 +55,6 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
   }
 
   ngAfterContentInit(): void {
-    // console.log(this.orderOutput$.subscribe(console.log));
   }
 
   selectCurrentMonth(event) {
@@ -67,43 +66,20 @@ export class OrderViewComponent implements OnInit, AfterContentInit, AfterViewIn
     // сохроняем выбранный месяц в переменную
     this.currentMonth = event;
   }
-
   selectCurrentOrder(event) {
-    this.router.navigate(['order-control', event], {queryParams: {
+    this.router.navigate(['orders', event], {queryParams: {
         numberOrder: event,
         monthYear: this.monthYear
       }});
-
-
-    // this.numberOrder = event;
-    // TODO стрим для выбраного заказа почему не меняет значение при изменении
-    // ngOnChanges решение
-    // this.orderOutput$ = this.firebaseService.loadOrder(this.currentMonth, this.numberOrder);
-    // console.log(this.orderOutput$.subscribe(console.log));
-    // this.orderOutput$ = this.firebaseService.load(event);
-    //  формируем заказ за выбраный номер
-    // this.orderInput = event;
-    // console.log(this.ordersMountList[event - 1]);
-    // this.orderOutput = this.ordersMountList[event - 1];
   }
   updateOrder(event) {
     this.firebaseService.updateOrder(event, this.currentMonth);
-    // console.log(event);
-    // this.itemsRef.update(event.numberOrder.toString(), event);
+
   }
 
   check() {
-    // console.log(this.items
-    //   .subscribe(console.log));
-    // this.itemsRef.update('8', { executor: 'Андрей' });
 
     console.log(this.currentMonth);
-    // console.log(this.orderOutput$);
-    // this.firebaseService.load(this.monthYear).subscribe(console.log);
-  }
 
-  temp(event) {
-    console.log('tempChange', event);
   }
-
 }

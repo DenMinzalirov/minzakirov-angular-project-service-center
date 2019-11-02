@@ -1,15 +1,15 @@
 
-<ul>
-  <li *ngIf="user | async">
+<ul *ngIf="user | async">
+  <li >
     <a mat-stroked-button routerLink = "/auth" routerLinkActive="active-link">LogOut</a>
   </li>
   <li>
-    <a mat-stroked-button routerLink = "/order-acceptance" routerLinkActive="active-link">Форма приема заказа</a>
+    <a mat-stroked-button routerLink = "/orders/order-acceptance" routerLinkActive="active-link">Форма приема заказа</a>
   </li>
   <li>
-    <a mat-stroked-button routerLink = "/order-control" routerLinkActive="active-link">форма контроля заказов</a>
+    <a mat-stroked-button routerLink = "/orders/order-control" routerLinkActive="active-link">форма контроля заказов</a>
   </li>
   <li>
-    <a mat-stroked-button routerLink = "/order-view" routerLinkActive="active-link">выбор заказа</a>
+    <a mat-stroked-button routerLink = "/orders/order-view" routerLinkActive="active-link">выбор заказа</a>
   </li>
 </ul>
