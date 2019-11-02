@@ -4,7 +4,7 @@
 
 <div *ngIf="user | async as user ; else showLogin">
   <h1>Hello {{ user.email }}!</h1>
-  <button (click)="logout()">Logout</button>
+  <button mat-stroked-button (click)="logout()">Logout</button>
 </div>
 <ng-template #showLogin>
   <p>Please login.</p>
@@ -34,7 +34,7 @@
       />
     </div>
     <div>
-      <button
+      <button mat-stroked-button
         type="submit"
         [disabled]="!authForm.valid"
       >

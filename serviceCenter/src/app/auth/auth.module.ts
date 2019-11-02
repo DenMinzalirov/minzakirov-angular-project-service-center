@@ -6,7 +6,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FormsModule} from '@angular/forms';
 import {NgxAuthFirebaseUIModule} from 'ngx-auth-firebaseui';
 import {environment} from '../../environments/environment';
-import {MatCardModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatTabsModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
 import {MatIconModule, MatProgressBarModule} from '@angular/material';
 import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
@@ -26,7 +26,8 @@ import {MatPasswordStrengthModule} from '@angular-material-extensions/password-s
     MatIconModule,
     MatPasswordStrengthModule,
     MatProgressBarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonModule
   ]
 })
 export class AuthModule { }
