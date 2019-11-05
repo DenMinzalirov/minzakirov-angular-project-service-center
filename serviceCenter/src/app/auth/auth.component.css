@@ -1,0 +1,27 @@
+.mat-card {
+  margin: 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.mat-form-field {
+  display: block;
+}
+
+form {
+  flex-direction: column;
+  display: flex;
+}
+
+.logged {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

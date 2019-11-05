@@ -6,6 +6,7 @@ import {OrderControlComponent} from './order-control/order-control.component';
 import {QuickEditComponent} from './order-control/quick-edit/quick-edit.component';
 import {OrderViewComponent} from './order-view/order-view.component';
 import {OrderCreatedComponent} from './order-created/order-created.component';
+import {PartsListComponent} from '../parts/parts-list/parts-list.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,12 @@ const routes: Routes = [
   {path: 'order-control', component: OrderControlComponent, canActivate: [AuthGuard]},
   {path: 'order-view', component: OrderViewComponent, canActivate: [AuthGuard]},
   {path: 'order-created', component: OrderCreatedComponent, canActivate: [AuthGuard]},
-  {path: ':id', component: QuickEditComponent, canActivate: [AuthGuard]},
+  {
+    path: ':id', component: QuickEditComponent, canActivate: [AuthGuard],
+    // children: [
+    //   { path: '11', component: PartsListComponent, outlet: 'popup' },
+    // ]
+  },
 ];
 
 @NgModule({

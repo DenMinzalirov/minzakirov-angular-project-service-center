@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormControl, NgForm, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
 import * as firebase from 'firebase';
@@ -12,21 +12,40 @@ import * as firebase from 'firebase';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+  // email = new FormControl('', [Validators.required, Validators.email]);
   // isLoginMode = true;
+  user = this.fb.group({
+    email: [{value: '', disabled: false}, [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
 
-  constructor(private authService: AuthService) {
+  register = this.fb.group({
+    email: [{value: '', disabled: false}, [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
+
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder
+  ) {
   }
-  user: Observable<firebase.User | null> | string;
+  logged: Observable<firebase.User | null> | string;
+
+  getErrorMessage() {
+    return this.user.value.email.hasError('required') ? 'You must enter a value' :
+      this.user.value.email.hasError('email') ? 'Not a valid email' :
+        '';
+  }
 
   check() {
     // console.log(this.authService.user.subscribe(console.log));
-    this.authService.getAuth().subscribe(console.log);
+    // this.authService.getAuth().subscribe(console.log);
     // console.log(this.user.subscribe(console.log));
   }
 
-  onSubmit(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
+  onSubmit() {
+    const email = this.user.value.email;
+    const password = this.user.value.password
     this.authService.login(email, password);
     // this.authService.getAuth().subscribe(x => this.user = x.email);
   }
@@ -36,7 +55,8 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.authService.getAuth();
+    // TODO исправить для новой формы
+    this.logged = this.authService.getAuth();
   }
 
 }

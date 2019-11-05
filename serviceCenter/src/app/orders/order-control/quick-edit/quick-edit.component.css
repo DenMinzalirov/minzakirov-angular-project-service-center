@@ -1,0 +1,7 @@
+.quick_wrap {
+  display: flex;
+}
+
+.quick_wrap_col {
+  width: 50%;
+}

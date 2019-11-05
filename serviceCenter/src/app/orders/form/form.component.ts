@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -39,7 +39,8 @@ export class FormComponent implements OnInit, OnChanges  {
     prepayment: [''],
     manager: [''],
     executor: [''],
-    status: ['']
+    status: [''],
+    parts: ['']
     // статусы: новый, в работе, ждет запчастей, на согласовании, готов, выдан-успешно, выдан-отказ, не подлежит ремонту
   });
 

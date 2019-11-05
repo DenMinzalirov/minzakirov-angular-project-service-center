@@ -1,0 +1,46 @@
+<p>parts-list works!</p>
+<button (click)="check()">check</button>
+<hr>
+<div class="tableWrap">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSourceFilter" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="provider">
+      <th mat-header-cell *matHeaderCellDef> provider </th>
+      <td mat-cell *matCellDef="let element"> {{element.provider}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef> brand </th>
+      <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="model">
+      <th mat-header-cell *matHeaderCellDef> model </th>
+      <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> type </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>price</th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="getParts(row)" ></tr>
+  </table>
+</div>
+<!--<select (change)="selectCurrentPartsBrandList($event.target.value)">-->
+<!--  <option value="" hidden>Выбрать</option>-->
+<!--  <option *ngFor="let item of partsBrandList | async" [value]="item">{{item}}</option>-->
+<!--</select>-->
+<!--<select (change)="selectCurrentPartsTypeList($event.target.value)">-->
+<!--  <option value="" hidden>Выбрать</option>-->
+<!--  <option *ngFor="let item of partsTypeList | async" [value]="item">{{item}}</option>-->
+<!--</select>-->

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FirebaseService} from '../../shared/firebase.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -10,6 +10,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./order-control.component.css']
 })
 export class OrderControlComponent implements OnInit {
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   date = this.firebaseService.date; // сегодняшнее число
   monthYear = this.firebaseService.monthYear; // текущий месяц
   monthYearListArr: string[];
@@ -24,12 +25,14 @@ export class OrderControlComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.displayedColumns = ['numberOrder', 'status', 'dateOrder', 'brandPhone', 'modelPhone'];
     // выводит в таблицу за текущий месяц
     this.firebaseService.load(this.monthYear)
       .subscribe((x) => {
         // this.dataSource = x;
         this.dataSourceFilter = new MatTableDataSource(x);
+        this.dataSourceFilter.paginator = this.paginator;
       });
     // получили список месяцев из базы
     this.firebaseService.loadAllBase()
@@ -41,10 +44,6 @@ export class OrderControlComponent implements OnInit {
   selectMountYear(event) {
     this.monthYear = event;
     this.ngOnInit();
-    // this.firebaseService.load(event)
-    //   .subscribe((x) => {
-    //     this.dataSource = x;
-    //   });
   }
 // получил обьект заказа на клик по строке в таблице
   getOrder(order) {
@@ -57,6 +56,9 @@ export class OrderControlComponent implements OnInit {
 // фильтр строка
   applyFilter(filterValue: string) {
     this.dataSourceFilter.filter = filterValue.trim().toLowerCase();
+    if (this.dataSourceFilter.paginator) {
+      this.dataSourceFilter.paginator.firstPage();
+    }
   }
 
   temp() {

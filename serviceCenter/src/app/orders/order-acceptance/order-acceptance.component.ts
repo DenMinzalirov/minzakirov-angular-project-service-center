@@ -23,7 +23,6 @@ export class OrderAcceptanceComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private firebaseService: FirebaseService,
-    private router: Router
   ) { }
 
   clearOrder = this.firebaseService.loadLastNumberOrder(this.mountYear).pipe(
@@ -37,15 +36,10 @@ export class OrderAcceptanceComponent implements OnInit {
   );
 
   updateOrder(event) {
-    console.log(event);
     this.firebaseService.create(event);
 
   }
   ngOnInit() {
-    // this.patchNumberOrder();
-  }
-  createOrder() {
-    // this.firebaseService.create(this.order.value);
   }
 // проверочная функция понять пришла ли база с сервера
   checkBase() {}

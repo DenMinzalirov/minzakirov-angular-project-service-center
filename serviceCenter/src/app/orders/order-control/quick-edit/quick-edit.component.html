@@ -1,18 +1,39 @@
-<p>quick-edit works!</p>
-<p>{{status}}</p>
 <button (click)="check()" >проверка</button>
-<select (change)="selectNewStatus($event.target.value)">
-  <option value="" hidden>Выбрать</option>
-  <option *ngFor="let item of statusArr" >{{item}}</option>
-</select>
-<app-form
-  [currentOrder]="orderOutput$"
-  [currentStatus]="newStatus$"
-  (submitted)="updateOrder($event)"
->
-  <button type="submit" mat-stroked-button color="primary">
-    Update
-  </button>
-</app-form>
-<!--<p>{{order.status}}</p>-->
-<h2>{{ order | json}}</h2>
+<p>quick-edit works!</p>
+<div class="quick_wrap">
+  <div class="quick_wrap_col">
+    <p>Статус заказа {{status}}</p>
+    <mat-form-field>
+      <mat-label class="mat-step-label-selected">Выберите статус заказа</mat-label>
+      <mat-select (selectionChange)="selectNewStatus($event.value)">
+        <mat-option *ngFor="let st of statusArr" [value]="st" >
+          {{st}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button (click)="addParts()">Добавить в заказ запчасть</button>
+    <ng-container *ngIf="addPartsClick">
+      <div>
+        <app-parts-list
+          (submitted)="addPartsInOrder($event)"
+        >
+          <button type="submit" mat-stroked-button color="primary"  >
+            Update
+          </button>
+        </app-parts-list>
+      </div>
+
+    </ng-container>
+  </div>
+  <div class="quick_wrap_col">
+    <app-form
+      [currentOrder]="orderOutput$"
+      [currentStatus]="newStatus$"
+      (submitted)="updateOrder($event)"
+    >
+      <button type="submit" mat-stroked-button color="primary"  >
+        Update
+      </button>
+    </app-form>
+  </div>
+</div>

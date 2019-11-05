@@ -7,11 +7,19 @@ import {TemppComponent} from './order-view/tempp/tempp.component';
 import {FormComponent} from './form/form.component';
 import {QuickEditComponent} from './order-control/quick-edit/quick-edit.component';
 import {RouterModule} from '@angular/router';
-import {OrdersRoutingModule} from "./orders-routing.module";
+import {OrdersRoutingModule} from './orders-routing.module';
 import {AuthComponent} from '../auth/auth.component';
-import {MatButtonModule, MatInputModule, MatTableModule} from "@angular/material";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatInputModule, MatPaginatorModule,
+  MatSelectModule,
+  MatTableModule
+} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { OrderCreatedComponent } from './order-created/order-created.component';
+import {PartsModule} from "../parts/parts.module";
+// import {PartsListComponent} from '../parts/parts-list/parts-list.component';
 
 
 
@@ -23,7 +31,7 @@ import { OrderCreatedComponent } from './order-created/order-created.component';
     TemppComponent,
     FormComponent,
     QuickEditComponent,
-    OrderCreatedComponent
+    OrderCreatedComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +41,11 @@ import { OrderCreatedComponent } from './order-created/order-created.component';
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    PartsModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatPaginatorModule
   ]
 })
 export class OrdersModule { }
