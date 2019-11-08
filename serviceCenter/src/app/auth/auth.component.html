@@ -1,4 +1,4 @@
-<div *ngIf="logged | async as user ; else showLogin">
+<div class="logged-wrap" *ngIf="logged | async as user ; else showLogin">
   <mat-card class="logged">
     <h1>Hello {{ user.email }}!</h1>
     <button mat-stroked-button (click)="logout()">Logout</button>

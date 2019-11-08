@@ -1,24 +1,20 @@
-<app-tempp>
-  <h1>Вы смотрите заказы за {{currentMonth}}</h1>
-</app-tempp>
-
-<button (click)="check()">проверочная кнопка</button>
-<p>Информация о заказах за:
-    <select
-      [ngModel]="monthYear"
-      (change)="selectCurrentMonth($event.target.value)"
-    >
-      <option *ngFor="let item of monthYearListArr" [value]="item">{{item}}</option>
-    </select>
-  месяц
-</p>
-<label>
-  Выбрать номер заказа
-  <select #currentOrderSelected
-    (change)="selectCurrentOrder($event.target.value)"
-  >
-    <option value="" hidden>Выбрать</option>
-    <option *ngFor="let item of ordersMountList" >{{item.numberOrder}}</option>
-  </select>
-</label>
+<mat-card>
+  <mat-form-field>
+    <mat-label>Информация о заказах за:</mat-label>
+    <mat-select [ngModel]="monthYear" (selectionChange)="selectCurrentMonth($event.value)">
+      <mat-option *ngFor="let item of monthYearListArr" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>Сегодня: {{date}}</p>
+  <mat-form-field>
+    <mat-label>Выбрать номер заказа:</mat-label>
+    <mat-select (selectionChange)="selectCurrentOrder($event.value)">
+      <mat-option *ngFor="let item of ordersMountList" [value]="item.numberOrder">
+        {{item.numberOrder}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
 <hr>

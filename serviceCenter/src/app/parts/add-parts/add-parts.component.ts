@@ -3,7 +3,7 @@ import {FormBuilder} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, pluck, startWith} from 'rxjs/operators';
 import {FirebaseService} from '../../shared/firebase.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-parts',
@@ -50,7 +50,5 @@ export class AddPartsComponent implements OnInit {
     this.router.navigate(['parts/parts-created']);
     console.log(value);
   }
-  check() {
 
-  }
 }

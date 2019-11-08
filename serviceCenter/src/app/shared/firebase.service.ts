@@ -50,8 +50,6 @@ export class FirebaseService {
 
   createParts(parts) {
     this.db.object(`parts/${parts.id}`).set(parts);
-    // return this.http
-    //   .post<any>(`${FirebaseService.url}.json`, parts);
   }
 
   loadAllParts() {

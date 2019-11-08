@@ -6,7 +6,7 @@ import { PartsNavigationComponent } from './parts-navigation/parts-navigation.co
 import {ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatFormFieldModule,
   MatInputModule,
   MatTableModule
@@ -29,7 +29,8 @@ import { PartsListComponent } from './parts-list/parts-list.component';
     MatInputModule,
     MatButtonModule,
     MatAutocompleteModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule
   ]
 })
 export class PartsModule { }

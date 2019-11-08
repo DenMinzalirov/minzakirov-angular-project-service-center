@@ -1,0 +1,12 @@
+li {
+  list-style-type: none;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: aliceblue;
+  margin: 0 auto;
+  padding: 10px;
+}

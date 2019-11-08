@@ -23,3 +23,7 @@ td, th {
 tr:hover {
   background: aliceblue;
 }
+
+.mat-card {
+  margin: 2rem;
+}

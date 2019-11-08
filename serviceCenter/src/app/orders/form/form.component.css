@@ -18,3 +18,7 @@ input {
   display: flex;
   justify-content: space-around;
 }
+
+mat-card {
+  margin: 2rem;
+}

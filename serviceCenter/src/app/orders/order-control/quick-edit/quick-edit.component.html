@@ -1,9 +1,6 @@
-<button (click)="check()" >проверка</button>
-<p>quick-edit works!</p>
 <div class="quick_wrap">
   <div class="quick_wrap_col">
-    <p>Статус заказа {{status}}</p>
-    <mat-form-field>
+    <mat-form-field class="statusArr">
       <mat-label class="mat-step-label-selected">Выберите статус заказа</mat-label>
       <mat-select (selectionChange)="selectNewStatus($event.value)">
         <mat-option *ngFor="let st of statusArr" [value]="st" >
@@ -11,9 +8,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-stroked-button (click)="addParts()">Добавить в заказ запчасть</button>
-    <ng-container *ngIf="addPartsClick">
-      <div>
+    <button class="addParts" mat-stroked-button (click)="addParts()">Добавить в заказ запчасть</button>
+    <ng-container *ngIf="addPartsClick else showPartsInOrder">
+      <div class="partsList">
         <app-parts-list
           (submitted)="addPartsInOrder($event)"
         >
@@ -22,10 +19,33 @@
           </button>
         </app-parts-list>
       </div>
-
+    </ng-container>
+    <ng-container>
+      <ng-template #showPartsInOrder >
+        <table  *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8 partsList">
+          <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef> brand </th>
+            <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+          </ng-container>
+          <ng-container matColumnDef="model">
+            <th mat-header-cell *matHeaderCellDef> model </th>
+            <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+          </ng-container>
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> type </th>
+            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> price </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </ng-template>
     </ng-container>
   </div>
-  <div class="quick_wrap_col">
+  <div>
     <app-form
       [currentOrder]="orderOutput$"
       [currentStatus]="newStatus$"

@@ -1,7 +1,4 @@
 import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewInit,
   Component,
   EventEmitter,
   Input, OnChanges,
@@ -9,7 +6,6 @@ import {
   Output, SimpleChanges
 } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Component({
@@ -18,6 +14,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit, OnChanges  {
+
+  hasUnsavedChanges = true;
+
   constructor(
     private fb: FormBuilder,
     private router: Router
@@ -41,7 +40,6 @@ export class FormComponent implements OnInit, OnChanges  {
     executor: [''],
     status: [''],
     parts: ['']
-    // статусы: новый, в работе, ждет запчастей, на согласовании, готов, выдан-успешно, выдан-отказ, не подлежит ремонту
   });
 
   @Output() submitted = new EventEmitter();

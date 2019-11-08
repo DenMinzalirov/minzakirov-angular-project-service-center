@@ -25,3 +25,9 @@ form {
   flex-direction: column;
   text-align: center;
 }
+
+.logged-wrap {
+  display: flex;
+  justify-content: center;
+}
+

@@ -1,27 +1,23 @@
 import {
   Component, Input,
-  OnInit,
 } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {FirebaseService} from '../../shared/firebase.service';
-import {Router} from '@angular/router';
-import {debounceTime, delay, map, pluck} from 'rxjs/operators';
-import {ifError} from "assert";
-import {of, pipe} from "rxjs";
+import {map} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-order-acceptance',
   templateUrl: './order-acceptance.component.html',
   styleUrls: ['./order-acceptance.component.css']
 })
-export class OrderAcceptanceComponent implements OnInit {
+export class OrderAcceptanceComponent  {
   date = new Date().toLocaleDateString();
   mountYear = this.date.substring(3).replace(/\./g, '-');
-  // заглушка из-за требований form-component
   @Input() status = of('новый');
 
   constructor(
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     private firebaseService: FirebaseService,
   ) { }
 
@@ -37,10 +33,6 @@ export class OrderAcceptanceComponent implements OnInit {
 
   updateOrder(event) {
     this.firebaseService.create(event);
+  }
 
-  }
-  ngOnInit() {
-  }
-// проверочная функция понять пришла ли база с сервера
-  checkBase() {}
 }

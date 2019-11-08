@@ -1,28 +1,30 @@
-<button (click)="check()">проверка</button>
-<form [formGroup]="order" (ngSubmit)="createOrder(order.value)" class="example-form">
-  <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="Поставщик"
-           aria-label="Number" formControlName="provider" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Brand" formControlName="brand">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Model" formControlName="model">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Type" formControlName="type">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Price" formControlName="price">
-  </mat-form-field>
+<mat-card>
+  <form [formGroup]="order" (ngSubmit)="createOrder(order.value)" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput placeholder="Поставщик"
+             aria-label="Number" formControlName="provider" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Brand" formControlName="brand">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Model" formControlName="model">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Type" formControlName="type">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Price" formControlName="price">
+    </mat-form-field>
 
-  <button type="submit" mat-stroked-button color="primary">
-    Create
-  </button>
-</form>
+    <button type="submit" mat-stroked-button color="primary">
+      Create
+    </button>
+  </form>
+</mat-card>
+

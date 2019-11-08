@@ -1,7 +1,18 @@
-.quick_wrap {
+.quick_wrap_col {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.quick_wrap_col {
-  width: 50%;
+.addParts {
+  margin: 1rem;
+  width: 45%;
+}
+
+.statusArr {
+  width: 45%;
+}
+
+.partsList {
+  width: 90%;
 }
