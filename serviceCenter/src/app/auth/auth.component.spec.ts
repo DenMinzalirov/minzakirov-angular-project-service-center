@@ -14,12 +14,12 @@ describe('AuthComponent', () => {
       name: 'John'
     };
   }
-  const formBuilderStub = {
-    group: object1 => ({
-      invalid: true
-    }),
-    invalid: true
-  };
+  // const formBuilderStub = {
+  //   group: object1 => ({
+  //     invalid: true
+  //   }),
+  //   invalid: true
+  // };
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
 
@@ -28,8 +28,9 @@ describe('AuthComponent', () => {
       declarations: [ AuthComponent ],
       schemas:      [ NO_ERRORS_SCHEMA ],
       providers: [
+        FormBuilder,
         { provide: AngularFireAuth, useClass: MockAfAuth },
-        { provide: FormBuilder, useValue: formBuilderStub },
+        // { provide: FormBuilder, useValue: formBuilderStub },
       ]
     })
     .compileComponents();

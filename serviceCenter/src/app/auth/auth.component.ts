@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
     private fb: FormBuilder
   ) {
   }
-  logged; // : Observable<firebase.User | null> | string;
+  logged;
 
   getErrorMessage() {
     return this.user.value.email.hasError('required') ? 'You must enter a value' :

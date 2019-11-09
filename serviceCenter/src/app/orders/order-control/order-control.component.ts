@@ -14,7 +14,7 @@ export class OrderControlComponent implements OnInit {
   monthYear = this.firebaseService.monthYear; // текущий месяц
   monthYearListArr: string[];
   displayedColumns = [];
-  // TODO определить обьект для отрисовки таблицы
+  // TODO определить обьект для отрисовки таблицы 2
   dataSourceFilter: MatTableDataSource<any>;
 
   constructor(private firebaseService: FirebaseService,

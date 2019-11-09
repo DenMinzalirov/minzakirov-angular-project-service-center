@@ -12,9 +12,9 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {FirebaseService} from "../../shared/firebase.service";
-import {of} from "rxjs";
-import {Router} from "@angular/router";
+import {FirebaseService} from '../../shared/firebase.service';
+import {of} from 'rxjs';
+import {Router} from '@angular/router';
 
 describe('OrderControlComponent', () => {
   let firebaseService: Partial<FirebaseService>;
@@ -22,9 +22,9 @@ describe('OrderControlComponent', () => {
     load() {
       return of({ 1: '1'});
     }
-    loadAllBase() {
-      return { 1: '1'};
-    }
+    // loadAllBase() {
+    //   return of({ 1: '1'});
+    // }
     // loadAllBase() {
     //   return of({ 1: '1'});
     // }

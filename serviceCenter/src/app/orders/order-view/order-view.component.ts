@@ -19,7 +19,6 @@ export class OrderViewComponent implements OnInit {
   numberOrder = 1; // выбраный номер заказа
 
   constructor(private firebaseService: FirebaseService,
-              private db: AngularFireDatabase,
               private router: Router
   ) { }
 
