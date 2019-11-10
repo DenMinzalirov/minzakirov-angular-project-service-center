@@ -22,7 +22,6 @@ export class AuthService {
 
   login(email: string, password: string) {
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then(r => this.user = r.user.email);
-    // console.log(this.afAuth.user.subscribe(x => x.email));
   }
 
   logout() {

@@ -1,29 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from './auth.service';
+import {Observable} from 'rxjs';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit {
-  user = this.fb.group({
-    email: [{value: '', disabled: false}, [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
-  });
 
-  register = this.fb.group({
+
+export class AuthComponent implements OnInit {
+  user: FormGroup = this.fb.group({
     email: [{value: '', disabled: false}, [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
+  register: FormGroup = this.fb.group({
+    email: [{value: '', disabled: false}, [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
+  logged: Observable<firebase.User | null>;
 
   constructor(
     private authService: AuthService,
     private fb: FormBuilder
-  ) {
-  }
-  logged;
+  ) {}
 
   getErrorMessage() {
     return this.user.value.email.hasError('required') ? 'You must enter a value' :
@@ -42,7 +44,6 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit() {
-    // TODO исправить для новой формы
     this.logged = this.authService.getAuth();
   }
 
