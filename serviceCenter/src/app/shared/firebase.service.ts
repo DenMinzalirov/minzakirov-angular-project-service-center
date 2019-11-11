@@ -12,7 +12,6 @@ export class FirebaseService {
   monthYear = this.date.substring(3).replace(/\./g, '-');
 
   constructor(
-    private http: HttpClient,
     private db: AngularFireDatabase
   ) {}
 
