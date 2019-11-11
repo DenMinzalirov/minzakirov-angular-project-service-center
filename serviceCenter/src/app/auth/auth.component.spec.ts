@@ -25,7 +25,7 @@ describe('AuthComponent', () => {
     logout() {
       return of({name: 'John'});
     }
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

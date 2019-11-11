@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FirebaseService} from '../../shared/firebase.service';
 import {Router} from '@angular/router';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {Order} from '../../shared/order';
 
 @Component({
   selector: 'app-order-control',
@@ -15,7 +16,7 @@ export class OrderControlComponent implements OnInit {
   monthYearListArr: string[];
   displayedColumns = [];
   // TODO определить обьект для отрисовки таблицы 2
-  dataSourceFilter: MatTableDataSource<any>;
+  dataSourceFilter: MatTableDataSource<unknown>;
 
   constructor(private firebaseService: FirebaseService,
               private router: Router

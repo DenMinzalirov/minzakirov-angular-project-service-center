@@ -1,6 +1,6 @@
 <mat-card>
   <form [formGroup]="order" (ngSubmit)="createOrder(order.value)" class="example-form">
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input type="text" matInput placeholder="Поставщик"
              aria-label="Number" formControlName="provider" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
@@ -9,16 +9,16 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input matInput placeholder="Brand" formControlName="brand">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input matInput placeholder="Model" formControlName="model">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input matInput placeholder="Type" formControlName="type">
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input matInput placeholder="Price" formControlName="price">
     </mat-form-field>
 

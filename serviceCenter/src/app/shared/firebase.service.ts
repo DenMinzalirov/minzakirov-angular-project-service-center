@@ -8,16 +8,13 @@ import {AngularFireDatabase} from '@angular/fire/database';
   providedIn: 'root'
 })
 export class FirebaseService {
-  static url = 'https://servicecentr-1415e.firebaseio.com/parts';
   date = new Date().toLocaleDateString();
   monthYear = this.date.substring(3).replace(/\./g, '-');
 
   constructor(
     private http: HttpClient,
     private db: AngularFireDatabase
-  ) {
-    // this.orders = db.list('order').valueChanges();
-  }
+  ) {}
 
   create(order) {
     this.db.object(`orders/${this.monthYear}/${order.numberOrder}`).set(order);

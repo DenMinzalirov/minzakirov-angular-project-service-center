@@ -32,7 +32,6 @@ export class QuickEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.pipe(
-      // tap((value) => this.infoOrder = value),
     )
       .subscribe(
       x => {this.infoOrder = x; }

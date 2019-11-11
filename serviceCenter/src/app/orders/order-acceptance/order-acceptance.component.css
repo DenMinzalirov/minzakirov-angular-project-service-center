@@ -18,3 +18,8 @@ input {
 display: flex;
 justify-content: space-around;
 }
+
+p {
+  text-align: center;
+  color: red;
+}

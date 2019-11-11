@@ -1,27 +1,29 @@
 import {
-  Component, Input,
+  Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges,
 } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {FirebaseService} from '../../shared/firebase.service';
 import {map} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {FormValidatorService} from '../../shared/form-validator.service';
 
 @Component({
   selector: 'app-order-acceptance',
   templateUrl: './order-acceptance.component.html',
   styleUrls: ['./order-acceptance.component.css']
 })
-export class OrderAcceptanceComponent  {
-  date = new Date().toLocaleDateString();
-  mountYear = this.date.substring(3).replace(/\./g, '-');
-  @Input() status = of('новый');
+export class OrderAcceptanceComponent implements OnInit, OnChanges, DoCheck  {
 
   constructor(
-    // private fb: FormBuilder,
     private firebaseService: FirebaseService,
+    private formVal: FormValidatorService
   ) { }
+  date = new Date().toLocaleDateString();
+  mountYear = this.date.substring(3).replace(/\./g, '-');
+  validForm = true;
 
-  clearOrder = this.firebaseService.loadLastNumberOrder(this.mountYear).pipe(
+  @Input() status = of('новый');
+  @Input() clearOrder = this.firebaseService.loadLastNumberOrder(this.mountYear).pipe(
     map(x => {
       return {
         numberOrder: x,
@@ -31,8 +33,20 @@ export class OrderAcceptanceComponent  {
     })
   );
 
+  ngOnInit() {
+  }
+
+  ngDoCheck(): void {
+    this.validForm = this.formVal.validForm;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+  }
+
   updateOrder(event) {
     this.firebaseService.create(event);
+    this.validForm = false;
   }
 
 }

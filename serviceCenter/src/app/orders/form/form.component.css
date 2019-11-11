@@ -22,3 +22,8 @@ input {
 mat-card {
   margin: 2rem;
 }
+
+p {
+  text-align: center;
+  color: red;
+}

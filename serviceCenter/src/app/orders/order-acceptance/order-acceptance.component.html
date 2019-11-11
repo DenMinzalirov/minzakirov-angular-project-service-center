@@ -3,7 +3,9 @@
   [currentStatus]="status"
   (submitted)="updateOrder($event)"
 >
-  <button type="submit" mat-stroked-button color="primary">
+  <button [disabled]="!validForm" type="submit" mat-stroked-button color="primary">
     Create
   </button>
+  <p *ngIf="!validForm">Заполните все поля</p>
 </app-form>
+
