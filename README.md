@@ -1,6 +1,6 @@
 # minzakirov-angular-project-service-center
 
-## Рабочий вариант онлайн: https://denminzalirov.github.io/
+## Рабочий вариант онлайн: https://servicecentr-1415e.web.app/auth
 Логин : Test@test.com
 Пароль: 123456
 
